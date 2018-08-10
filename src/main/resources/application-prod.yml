@@ -1,0 +1,14 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver  
+    url: jdbc:mysql://10.1.1.38:3306/reptile?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+          max-lifetime: 1765000
+          maximum-pool-size: 15
+  thymeleaf:
+    cache: false

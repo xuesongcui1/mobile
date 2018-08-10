@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta content="width=device-width,user-scalable=no" name="viewport" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <title></title>
+</head>
+<body>
+<p>支付宝账户：<span th:text="${accountName}"></span></p>
+<p>真实姓名：<span th:text="${realName}"></span></p>
+<p>身份证号：<span th:text="${idCard}"></span></p>
+<p>账户余额：<span th:text="${amount.balance}"></span></p>
+<p>余额宝余额：<span th:text="${amount.totalQuotient}"></span></p>
+<p>余额宝累计收益：<span th:text="${amount.totalProfit}"></span></p>
+<p>天猫积分：<span th:text="${coupon.point}"></span></p>
+<p>优惠卷：<span th:text="${coupon.shopPromotion}"></span></p>
+<p>收货地址：</p>
+<div th:each="obj : ${address}">
+    <p th:text="${obj}"></p>
+</div>
+<p>近期收货地址：</p>
+<div th:each="obj : ${nearAddress}">
+    <p>
+        <span th:text="${obj.orderTime}"></span>
+        <span th:text="${obj.orderTitle}"></span>
+        <span th:text="${obj.address}"></span>
+    </p>
+</div>
+<input type="button" onclick="window.location.href='index.html'" value="返回" />
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8"> 
+        <meta name="apple-mobile-web-app-capable" content="yes">  
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+        <meta http-equiv="Expires" CONTENT="-1">
+        <meta http-equiv="Cache-Control" CONTENT="no-cache">
+        <meta http-equiv="Pragma" CONTENT="no-cache">
+        <script src="js/jquery-1.11.3.js"></script> 
+        <title>淘宝认证失败</title>
+        <style>
+                html{
+                    margin:0;
+                    padding:0;
+                    width:100%;
+                    height:100%;
+                    background:#fff;
+                }
+                .content{
+                    width:100%;
+                    height:100%;
+                    margin-top:40%;
+                    text-align:center;
+                }
+                .word{
+                    font-size:1.5rem;
+                    color:#666;
+                    font-weight:bold;
+                 }
+                 .contentBut{
+                     width:80%;
+                     height:3rem;
+                     margin:3rem auto;
+                 }
+                 .confirm
+                 {
+                     height:3rem;
+                     width:100%;
+                     background:#c9a96e;
+                     -webkit-tap-highlight-color:rgba(255,255,255,0);
+                     -webkit-appearance : none ;
+                     border:none;
+                     outline:none;
+                     color:#fff;
+                     font-size:1.2rem;
+                 }
+            </style>
+</head>
+<body>
+    <div class="content">
+        <img src="image/fail.png">
+        <p class="word">认证失败!</p>
+    </div>
+</body>
+<script>
+// $(document).ready(function(){
+//             var url = window.location.href
+//             var param = url.substring(url.indexOf('=')+1)
+//             param = param.replace('?', '&')
+            
+//                    console.log(param);
+//             $.ajax({
+//                     type : "POST", // 提交的类型
+//                     async :true,
+//                     dataType: 'JSON',
+//                     url : "/web/call/statusPushEnd.do?cardNumber="+param,// 提交地址
+//                     data : {
+//                        // data:data,
+//                     },// 参数
+//                   //  jsonpCallback:"callback",
+//                     success : function(flm) {
+//                         console.dir(flm); 
+//                     },
+//                     error: function(XMLHttpRequest, textStatus, errorThrown) {
+//                        // alert();
+//                     }
+//                 });
+//     });  
+    function jump(){
+    var success;
+    var u = navigator.userAgent, app = navigator.appVersion;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1;
+        var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+        if(isAndroid){
+            Android.changeActivity("点击失败");
+            }
+            if(isIOS){
+                window.webkit.messageHandlers.submitResult.postMessage({success:"成功"});
+            }
+    }
+</script>
+</html>
