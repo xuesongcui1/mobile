@@ -106,6 +106,79 @@ public class Dates {
 	    }
 	    return date;
 	  }
-	
-	
-}
+	 
+	 /**
+	  * 获取当前时间 格式 yyyy-MM-dd
+	  * @param date
+	  * @return  
+	  * @Description:
+	  */
+	 public static String currentDateToString() {
+		 SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd");
+		 Calendar calendar = Calendar.getInstance();
+		 String lastTime = sim.format(calendar.getTime());
+		 return lastTime;
+	 }
+	 
+	 
+	 /**
+	  * 获取n月前的那个月份  yyyy-MM
+	  * @param date
+	  * @return  
+	  * @Description:
+	  */
+	 public static String parseDateToStringM(int i) {
+		 SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM");
+		 Calendar calendar = Calendar.getInstance();
+		 calendar.add(Calendar.MONTH, i);
+		 calendar.setTime(new Date());
+		 String lastTime = sim.format(calendar.getTime());
+		 return lastTime;
+	 }
+	 
+	 /**
+	  * 获取n月前的那个月份的第一天格式  yyyy-MM-dd
+	  * @param date
+	  * @return  
+	  * @Description:
+	  */
+	 public static String parseDateToStringB(int i) {
+		 SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd");
+		 Calendar calendar = Calendar.getInstance();
+		 calendar.add(Calendar.MONTH, i);
+		 calendar.setTime(new Date());
+		 calendar.set(Calendar.DAY_OF_MONTH,1);
+		 String lastTime = sim.format(calendar.getTime());
+		 return lastTime;
+	 }
+	 
+	 /**
+	  * 获取n月前的那个月份的最后一天格式 yyyy-MM-dd
+	  * @param date
+	  * @return  
+	  * @Description:
+	  */
+	 public static String parseDateToStringE(int i) {
+		 SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd");
+		 Calendar calendar = Calendar.getInstance();
+		 calendar.add(Calendar.MONTH, i);
+		 calendar.setTime(new Date());
+		 calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH)); 
+		 String lastTime = sim.format(calendar.getTime());
+		 return lastTime;
+	 }
+	 
+	 /**
+	  * 获取当前时间 格式Tue Aug 21 2018 03:30:12 GMT+0800 (中国标准时间)
+	  * @param date
+	  * @return  
+	  * @Description:
+	  */
+	 public static String parseCurrentDateToString() {
+		 String  str =new Date().toString();
+		 String[] array = str.split(" ");
+		 String result = "Tue "+array[1]+" "+array[2]+" "+array[5]+" "+array[3]+" GMT+0800 (中国标准时间)";
+		return result;
+	 }
+}	
+

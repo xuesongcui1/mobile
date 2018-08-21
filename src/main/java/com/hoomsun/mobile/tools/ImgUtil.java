@@ -1,18 +1,25 @@
 package com.hoomsun.mobile.tools;
 
-import com.gargoylesoftware.htmlunit.html.HtmlImage;
-import org.openqa.selenium.*;
-import org.openqa.selenium.remote.Augmenter;
-
-import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
-import javax.imageio.stream.ImageInputStream;
-import javax.servlet.http.HttpServletRequest;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
+
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+import javax.servlet.http.HttpServletRequest;
+
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.Augmenter;
+
+import com.gargoylesoftware.htmlunit.html.HtmlImage;
 
 
 /**
@@ -34,7 +41,7 @@ public class ImgUtil {
 	 * @return
 	 * @throws IOException
 	 */
-	public static String saveImg(HtmlImage htmlImg,String prefix, String verifyImagesPath,String suffix) throws IOException{
+	public static String saveImg(HtmlImage htmlImg,String prefix, String verifyImagesPath,String suffix) throws Exception{
 	  
 		File file = new File(verifyImagesPath + File.separator);
        	if (!file.exists()) {
@@ -45,8 +52,13 @@ public class ImgUtil {
 		String fileName = prefix + System.currentTimeMillis()+"."+suffix;
 		ImageIO.write(bufferedImage, suffix, new File(file,fileName));
 	   	String filePath = verifyImagesPath + File.separator + fileName;
-		return filePath;
+	   	
+	   	Map<String, Object> imagev = MyCYDMDemo.Imagev(filePath);
+		//读取图片验证码
+        String code = imagev.get("strResult").toString();
+		return code;
 	}
+	
 	/**
 	 * 保存验证码图片,返回浏览器可访问到图片的地址
 	 * @param htmlImg 图片流
