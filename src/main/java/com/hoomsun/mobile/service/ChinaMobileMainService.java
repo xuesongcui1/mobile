@@ -16,11 +16,10 @@ import com.gargoylesoftware.htmlunit.HttpMethod;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.WebRequest;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.html.HtmlTableDataCell;
 import com.hoomsun.mobile.dao.SupportMapper;
 import com.hoomsun.mobile.tools.CrawlerUtil;
 import com.hoomsun.mobile.tools.Dates;
-
-import net.sf.json.JSONObject;
 
 /**
  * 移动动态配置service
@@ -69,18 +68,20 @@ public class ChinaMobileMainService {
 			//获取手机具体归属地
 			CrawlerUtil craw = new CrawlerUtil();
 			WebClient webClient = craw.setWebClient();
-			WebRequest webRequest = new WebRequest(
-					new URL("http://a.apix.cn/apixlife/phone/phone?phone=" + phoneNumber + ""));
+			WebRequest webRequest = new WebRequest(new URL(
+					"http://www.ip138.com:8080/search.asp?mobile="+phoneNumber+"&action=mobile"));
 			webRequest.setHttpMethod(HttpMethod.GET);
-			webClient.addRequestHeader("APIX-KEY", "bf0bfb8730cb43ea5f76e53c79e6b063");
 			HtmlPage page1 = webClient.getPage(webRequest);
 			
 			logger.warn(page1.asText());
-			JSONObject obj = JSONObject.fromObject(page1.asText());
 			
-			JSONObject dataJson = obj.getJSONObject("data");
-			String province = dataJson.getString("province");
+			HtmlTableDataCell td =  (HtmlTableDataCell) page1.getByXPath("/html/body/table[2]/tbody/tr[3]/td[2]").get(0);
 			
+			String province = td.getTextContent();
+			
+			String[] ss = province.split(" ");
+			
+			province = ss[0];
 			logger.warn("--------移动动态配置-------手机号："+ phoneNumber + "所在城市："+ province);
 			
 			Map<String, Object> info = supportmapper.queryOperatorManage("移动",province);

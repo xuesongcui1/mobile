@@ -290,7 +290,8 @@ public class GuangXiMobileService {
 					String statusCode = "errorCode";
 					if (statusResult.equals(map.get(statusCode))) {
 						PushSocket.pushnew(map, uuid, "8000", "认证成功");
-						PushState.state(phoneCode, "callLog", 300);
+						 PushState.stateTelecom(phoneCode, "callLog", 300, "获取到的详单小于3个月，未推送数据");
+//						PushState.state(phoneCode, "callLog", 300);
 					} else {
 						PushSocket.pushnew(map, uuid, "9000", map.get("errorInfo").toString());
 						PushState.state(phoneCode, "callLog", 200, map.get("errorInfo").toString());

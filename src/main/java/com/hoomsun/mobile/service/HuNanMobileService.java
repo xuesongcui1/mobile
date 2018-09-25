@@ -43,7 +43,7 @@ import com.hoomsun.mobile.tools.Resttemplate;
 
 @Service
 public class HuNanMobileService {
-	private Logger logger = LoggerFactory.getLogger(ShanXiMobileService.class);
+	private Logger logger = LoggerFactory.getLogger(HuNanMobileService.class);
 	public Map<String, String> doGetCode(HttpServletRequest request, String phoneCode) {
 		Map<String, String> map = new HashMap<String, String>(16);
 		logger.warn("------湖南移动获取手机验证码-----开始-----手机号：" + phoneCode);
@@ -99,7 +99,7 @@ public class HuNanMobileService {
 	
 	public Map<String, Object> doGetDetail(HttpServletRequest request,String phoneCode,
 			String messageCode, String servicePassword,String longitude, String latitude,String uuid,String phoneType) {
-		logger.warn("------陕西移动登录部分------开始-----手机号：" + phoneCode + "		短信验证码："+ messageCode +"		服务密码："+servicePassword + "		phoneType:"+phoneType);
+		logger.warn("------湖南移动登录部分------开始-----手机号：" + phoneCode + "		短信验证码："+ messageCode +"		服务密码："+servicePassword + "		phoneType:"+phoneType);
 		Map<String, Object> map = new HashMap<String, Object>(16);
 		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
 		PushSocket.pushnew(map, uuid, "1000", "登录中");
